@@ -15,6 +15,7 @@
   <img alt="Windows" src="https://img.shields.io/badge/Windows-Service%20%2B%20Console-0078D4?style=for-the-badge&logo=windows&logoColor=white">
   <img alt="Freelancer" src="https://img.shields.io/badge/Freelancer-Multiplayer-00A3FF?style=for-the-badge">
   <img alt="Web administration" src="https://img.shields.io/badge/Web-Administration-7B61FF?style=for-the-badge">
+  <a href="https://github.com/flathack/FLAtlas-FL-Server/wiki"><img alt="Help in the wiki" src="https://img.shields.io/badge/Help-Wiki-2EA44F?style=for-the-badge"></a>
 </p>
 
 > The built program folder contains the original game's own files, for the private use of the person who owns the game, on their own computer. It must not be shared or published. This repository leaves those files out.
@@ -29,6 +30,10 @@ or from any mod installation you choose.
 
 Later versions come as updates: the **Updates** page checks the releases once a day and installs a new one
 for the owner after checking its hashes. How a release has to look is described in [docs/RELEASING.md](docs/RELEASING.md).
+
+## Help
+
+The [FLAtlas Server wiki](https://github.com/flathack/FLAtlas-FL-Server/wiki) explains every page of the web administration with a screenshot, plus installation, roles, all commands and troubleshooting.
 
 ## What It Does
 
@@ -166,7 +171,7 @@ This repository is the public download and release hub of FLAtlas Server. Releas
 
 ## Help And Community
 
-Questions, bug reports and ideas are welcome on the FL Atlas Discord:
+Start with the [wiki](https://github.com/flathack/FLAtlas-FL-Server/wiki) and its [Troubleshooting](https://github.com/flathack/FLAtlas-FL-Server/wiki/Troubleshooting) page. Questions, bug reports and ideas are welcome on the FL Atlas Discord:
 
 [![Join the FLAtlas Discord](https://img.shields.io/badge/FLAtlas-Discord%20Community-5865F2?style=for-the-badge&logo=discord&logoColor=white)](https://discord.gg/fY9qweRWGn)
 

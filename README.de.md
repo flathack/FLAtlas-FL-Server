@@ -15,6 +15,7 @@
   <img alt="Windows" src="https://img.shields.io/badge/Windows-Dienst%20%2B%20Konsole-0078D4?style=for-the-badge&logo=windows&logoColor=white">
   <img alt="Freelancer" src="https://img.shields.io/badge/Freelancer-Multiplayer-00A3FF?style=for-the-badge">
   <img alt="Web-Verwaltung" src="https://img.shields.io/badge/Web-Verwaltung-7B61FF?style=for-the-badge">
+  <a href="https://github.com/flathack/FLAtlas-FL-Server/wiki"><img alt="Hilfe im Wiki" src="https://img.shields.io/badge/Hilfe-Wiki-2EA44F?style=for-the-badge"></a>
 </p>
 
 > The built program folder contains the original game's own files, for the private use of the person who owns the game, on their own computer. It must not be shared or published. This repository leaves those files out.
@@ -30,6 +31,10 @@ anderen Spielordner: `Spiel verbinden.cmd "D:\Spiele\Freelancer"`), dann `Server
 Spätere Versionen kommen als Update: Die Seite **Updates** sucht einmal am Tag nach Releases und installiert
 für den Inhaber ein neues, nachdem sie die Prüfsummen kontrolliert hat. Wie ein Release aussehen muss, steht in
 [docs/RELEASING.md](docs/RELEASING.md).
+
+## Hilfe
+
+Das [Wiki von FLAtlas Server](https://github.com/flathack/FLAtlas-FL-Server/wiki) erklärt jede Seite der Web-Verwaltung mit Screenshot, dazu Installation, Rollen, alle Befehle und Fehlerbehebung. Es ist auf Englisch.
 
 ## Was er kann
 
@@ -168,7 +173,7 @@ Dieses Repository ist die öffentliche Download- und Release-Seite von FLAtlas S
 
 ## Hilfe und Community
 
-Fragen, Fehlermeldungen und Ideen gern im Discord von FL Atlas:
+Erste Hilfe bieten das [Wiki](https://github.com/flathack/FLAtlas-FL-Server/wiki) und seine Seite [Troubleshooting](https://github.com/flathack/FLAtlas-FL-Server/wiki/Troubleshooting). Fragen, Fehlermeldungen und Ideen gern im Discord von FL Atlas:
 
 [![FLAtlas Discord beitreten](https://img.shields.io/badge/FLAtlas-Discord%20Community-5865F2?style=for-the-badge&logo=discord&logoColor=white)](https://discord.gg/fY9qweRWGn)
 
