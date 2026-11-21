@@ -11,7 +11,7 @@
 </p>
 
 <p align="center">
-  <img alt="Version 0.1.0" src="https://img.shields.io/badge/Version-0.1.0-00d5ff?style=for-the-badge">
+  <img alt="Version 0.2.0" src="https://img.shields.io/badge/Version-0.2.0-00d5ff?style=for-the-badge">
   <img alt="Windows" src="https://img.shields.io/badge/Windows-Dienst%20%2B%20Konsole-0078D4?style=for-the-badge&logo=windows&logoColor=white">
   <img alt="Freelancer" src="https://img.shields.io/badge/Freelancer-Multiplayer-00A3FF?style=for-the-badge">
   <img alt="Web-Verwaltung" src="https://img.shields.io/badge/Web-Verwaltung-7B61FF?style=for-the-badge">
@@ -24,12 +24,27 @@
 
 Releases erscheinen auf der GitHub-Releaseseite als `FLAtlas-Server-v<version>-win-x86.zip`. Das Paket enthält
 nur die Programmdateien dieses Projekts; die wenigen Dateien, die der Server aus dem Spiel braucht, kopiert er
-beim ersten Start aus deiner eigenen Installation. ZIP entpacken, `Spiel verbinden.cmd` ausführen (für einen
-anderen Spielordner: `Spiel verbinden.cmd "D:\Spiele\Freelancer"`), dann `Server starten.cmd`. Die Spieldaten liest er aus
+beim ersten Start aus deiner eigenen Installation. ZIP entpacken, `Connect game.cmd` ausführen (für einen
+anderen Spielordner: `"Connect game.cmd" "D:\Spiele\Freelancer"`), dann `Start server.cmd`. Du kannst ihn
+auch selbst bauen (siehe [Bauen](#bauen)). Die Spieldaten liest er aus
 `C:\Program Files (x86)\Microsoft Games\Freelancer` oder aus einer Mod-Installation deiner Wahl.
 
+Unter Linux nimmst du `FLAtlas-Server-v<version>-linux-x86.tar.gz`: Es startet denselben Server unter Wine.
+Entpacken, `bash connect-game.sh "/pfad/zu/Freelancer"` ausführen, dann `bash start-server.sh`, oder als
+systemd-Dienst `sudo bash install-service.sh` (`--prefix /pfad/zum/praefix` für ein anderes Wine-Präfix,
+weil `sudo` `WINEPREFIX` verwirft). Gib dem Dienst ein eigenes Wine-Präfix (zum Beispiel
+`WINEPREFIX=~/.wine-flatlas wineboot -i`, dann `--prefix ~/.wine-flatlas`): Mit dem gemeinsamen `~/.wine`
+kann ein Stopp des Dienstes auch ein Spiel beenden, das du dort spielst. Wine braucht 32-Bit-Unterstützung,
+DirectPlay meist `winetricks directplay`. `journalctl -u flatlas-server` zeigt die Konsolenausgabe des
+Servers (unter Wine noch nicht getestet); die Server-Protokolle stehen außerdem in der Verwaltung und im
+Ordner `data`.
+
 Spätere Versionen kommen als Update: Die Seite **Updates** sucht einmal am Tag nach Releases und installiert
-für den Inhaber ein neues, nachdem sie die Prüfsummen kontrolliert hat. Wie ein Release aussehen muss, steht in
+für den Inhaber ein neues, nachdem sie die Prüfsummen kontrolliert hat. Unter Wine gibt es das eingebaute
+Update nicht: Server beenden (`sudo systemctl stop flatlas-server` oder Strg+C), das neue Linux-Paket über
+den alten Ordner entpacken (`tar -xzf <paket>.tar.gz --strip-components=1 -C /pfad/zum/ordner`; `data`
+bleibt erhalten) und wieder starten. Unter **Updates > Changelogs** steht,
+was sich in jeder Version geändert hat. Wie ein Release aussehen muss, steht in
 [docs/RELEASING.md](docs/RELEASING.md).
 
 ## Hilfe
@@ -72,10 +87,10 @@ startet und betreut mehrere Spielserver auf einem PC, als Windows-Dienst oder in
 
 ## Erste Schritte
 
-1. `FLAtlas-Server-v<version>-win-x86.zip` aus dem [neuesten Release](https://github.com/flathack/FLAtlas-FL-Server/releases/latest) laden und in einen Ordner deiner Wahl entpacken.
-2. Für den Dauerbetrieb `Dienst installieren.cmd` doppelklicken und die Windows-Abfrage bestätigen. Der Dienst
-   `FLAtlasServer` startet dann mit Windows; `Dienst entfernen.cmd` nimmt ihn wieder heraus. Zum Ausprobieren
-   öffnet `Server starten.cmd` stattdessen ein Konsolenfenster.
+1. Den Server bauen (siehe [Bauen](#bauen)).
+2. Für den Dauerbetrieb `Install service.cmd` doppelklicken und die Windows-Abfrage bestätigen. Der Dienst
+   `FLAtlasServer` startet dann mit Windows; `Remove service.cmd` nimmt ihn wieder heraus. Zum Ausprobieren
+   öffnet `Start server.cmd` stattdessen ein Konsolenfenster.
 3. Auf demselben PC **http://127.0.0.1:8080/** öffnen und den Inhaber-Zugang anlegen.
 4. Im Spiel **Multiplayer** wählen. Erscheint der Server nicht, die LAN-Adresse des Server-PCs mit dem
    Spielport eingeben, standardmäßig **2302**. `127.0.0.1` funktioniert nicht, weil das Netzwerkverfahren des
@@ -85,8 +100,9 @@ Alle Spieler brauchen dieselben Spieldaten wie ihr Server.
 
 ## Systemvoraussetzungen
 
-- **Betriebssystem:** Windows 10 oder neuer
+- **Betriebssystem:** Windows 10 oder neuer, oder Linux mit Wine (32-Bit-Unterstützung)
 - **Spiel:** Ein installiertes Freelancer, dazu jede Mod-Installation, die ein Server nutzen soll
+- **Zum Bauen:** Visual Studio 2022 Build Tools (C++), Rust und 7-Zip
 - **Netzwerk:** Der Spielport jedes Servers im LAN erreichbar
 
 ## Befehle
@@ -148,6 +164,8 @@ Unter **Spielmechaniken** schaltest du diese Regeln pro Server ein und aus:
 
 - `FLAtlasServer.exe` ist die Verwaltung. Sie startet jeden Spielserver als eigenen Prozess mit eigenem
   Datenordner. Die Server haben keine eigene Oberfläche und antworten nur der Verwaltung auf diesem PC.
+- Ein Neustart aus der Verwaltung warnt zuerst die Spieler und wartet 60 Sekunden; Wartezeit und Nachricht
+  stellst du pro Server unter **Einstellungen > Neu starten** ein. Während der Wartezeit wird der Knopf zu „Sofort neu starten“, der ohne Wartezeit neu startet.
 - Der Server früherer Versionen heißt `main` und behält den Ordner `data`; neue Server liegen unter
   `data\instances\<kennung>`. Stürzt ein Server ab, startet die Verwaltung ihn neu, höchstens dreimal in zehn Minuten.
 - Jeder Server kann seine Spieldaten aus einer eigenen Freelancer-Installation lesen, zum Beispiel einer Kopie mit Mod.
@@ -167,9 +185,26 @@ Unter **Spielmechaniken** schaltest du diese Regeln pro Server ein und aus:
   Trennen oder Sperren stellen.
 - IP-Adressen sehen nur Administratoren.
 
-## Über dieses Repository
+## Bauen
 
-Dieses Repository ist die öffentliche Download- und Release-Seite von FLAtlas Server. Releases enthalten nur die Programmdateien des Projekts; die Dateien, die der Server aus dem Spiel braucht, kopiert `Spiel verbinden.cmd` aus deiner eigenen Installation. Wie ein Release gebaut wird und was die Update-Suche prüft, steht in [docs/RELEASING.md](docs/RELEASING.md).
+```powershell
+powershell -NoProfile -ExecutionPolicy Bypass -File .\build.ps1
+.\bin\FLAtlasServer.exe --self-test bericht.json
+```
+
+`Build server.cmd` oder `cargo build` tun dasselbe. Der Selbsttest startet die Verwaltung in einem
+Testordner, legt Server an und lässt einen Testspieler bis in den Weltraum spielen, während er die
+Web-Verwaltung bedient. Er umfasst 87 Schritte. Hinweise für Entwickler und Coding-Agenten stehen in
+[AGENTS.md](AGENTS.md), die Herkunft aller Dateien in [CREDITS.md](CREDITS.md).
+
+| Ordner | Inhalt |
+| --- | --- |
+| `src\FLService` | Verwaltung, Spielserver-Prozess, Web-Server, Befehle, Spielmechaniken, Web-Oberfläche |
+| `src\Server\server_anticheat.cpp` | Anti-Cheat und Service-Anbindung im Server |
+| `src\Server`, `src\Common`, `src\Content` | Spiellogik aus dem Decomp |
+| `src\RemoteClient`, `src\DALib` | Netzwerk |
+| `src\FLProbe` | Automatischer Testspieler |
+| `upstream-docs` | Technische Notizen aus dem Decomp-Projekt |
 
 ## Hilfe und Community
 
