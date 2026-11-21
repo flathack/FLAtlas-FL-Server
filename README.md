@@ -25,8 +25,7 @@
 Releases are published on the GitHub releases page as `FLAtlas-Server-v<version>-win-x86.zip`. The package
 only holds this project's program files; the few files the server needs from the game are copied from your
 own installation on first start. Extract the ZIP, run `Connect game.cmd` (for another game folder:
-`"Connect game.cmd" "D:\Games\Freelancer"`), then `Start server.cmd`. You can also build it yourself
-(see [Building](#building)). The game data is read from `C:\Program Files (x86)\Microsoft Games\Freelancer`
+`"Connect game.cmd" "D:\Games\Freelancer"`), then `Start server.cmd`. The game data is read from `C:\Program Files (x86)\Microsoft Games\Freelancer`
 or from any mod installation you choose.
 
 On Linux, take `FLAtlas-Server-v<version>-linux-x86.tar.gz`: it runs the same server under Wine. Extract it,
@@ -84,7 +83,7 @@ in a console window.
 
 ## Getting Started
 
-1. Build the server (see [Building](#building)).
+1. Download `FLAtlas-Server-v<version>-win-x86.zip` from the [latest release](https://github.com/flathack/FLAtlas-FL-Server/releases/latest) and extract it to a folder of your choice. On Linux take the `linux-x86.tar.gz` (see [Download](#download)).
 2. To run it permanently, double-click `Install service.cmd` and confirm the Windows prompt. The service
    `FLAtlasServer` then starts with Windows; `Remove service.cmd` removes it. For a quick try,
    `Start server.cmd` opens a console window instead.
@@ -99,7 +98,6 @@ All players need the same game data as their server.
 
 - **Operating system:** Windows 10 or newer, or Linux with Wine (32-bit support)
 - **Game:** An installed Freelancer, plus any mod installation a server should use
-- **For building:** Visual Studio 2022 Build Tools (C++), Rust and 7-Zip
 - **Network:** The game port of each server reachable in the LAN
 
 ## Commands
@@ -180,26 +178,9 @@ Under **Game mechanics** you switch these rules on or off for each server:
 - The anti-cheat only reports at first. Switch a rule to blocking, kicking or banning once it hits no honest players.
 - IP addresses are only shown to administrators.
 
-## Building
+## About This Repository
 
-```powershell
-powershell -NoProfile -ExecutionPolicy Bypass -File .\build.ps1
-.\bin\FLAtlasServer.exe --self-test report.json
-```
-
-`Build server.cmd` or `cargo build` does the same. The self-test starts the administration in a temporary
-folder, creates servers and lets a test client play into space while it operates the web administration. It
-covers 87 steps. Notes for developers and coding agents are in [AGENTS.md](AGENTS.md), the origin of all files
-in [CREDITS.md](CREDITS.md).
-
-| Folder | Contents |
-| --- | --- |
-| `src\FLService` | Administration, game server process, web server, commands, game mechanics, web interface |
-| `src\Server\server_anticheat.cpp` | Anti-cheat and the service hooks inside the server |
-| `src\Server`, `src\Common`, `src\Content` | Game logic from the decomp |
-| `src\RemoteClient`, `src\DALib` | Network |
-| `src\FLProbe` | Automatic test client |
-| `upstream-docs` | Technical notes from the decomp project |
+This repository is the public download and release hub of FLAtlas Server. Releases contain only the project's own program files; the files the server needs from the game are copied from your own installation by `Connect game.cmd` (on Linux `connect-game.sh`). What changed in each version is in [CHANGELOG.md](CHANGELOG.md), how a release is built and checked by the updater in [docs/RELEASING.md](docs/RELEASING.md), and the origin of all files in [CREDITS.md](CREDITS.md).
 
 ## Help And Community
 
