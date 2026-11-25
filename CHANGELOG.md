@@ -4,6 +4,29 @@ All notable changes to FLAtlas Server. Each release has one section `## v<versio
 `tools/make-release.ps1` takes that section as the notes of the GitHub release, and the web
 administration shows this file under **Updates > Changelogs**.
 
+## v0.3.0 - 2026-11-25
+
+### Added
+- Plugins: DLLs in `<data>\plugins` with a plain C interface. They hook into all client requests
+  (and can skip the game's handling), add chat commands with the usual rights check, run timers,
+  and use host services: player system, base, position, credits, rank, role and reputation;
+  credits, cargo and reputation changes, kick, beam to a base, chat to a system or everyone. A
+  plugin that crashes is switched off.
+- **Plugins** page in the web administration: switch plugins on and off (effective at the next
+  start), edit each plugin's settings as JSON, see state and SHA-256. Changes are recorded in the
+  change history.
+- A compatibility layer that loads FLHook 4 plugins rebuilt from their source against it. It is
+  not part of the release package yet.
+
+### Fixed
+- Re-buying the ship you already fly and then undocking no longer reports you as a cheater for
+  the equipment that comes with the ship.
+- An unknown ship in a character file no longer crashes the server; the error is logged.
+- Launchers with several barrels now take one round per barrel from the cargo, like the game
+  client, instead of one round per shot.
+- A DLL listed in `freelancer.ini` that does not exist no longer crashes the server.
+- These four fixes follow FLSharp by BC46.
+
 ## v0.2.0 - 2026-11-21
 
 ### Added

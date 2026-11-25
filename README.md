@@ -11,7 +11,7 @@
 </p>
 
 <p align="center">
-  <img alt="Version 0.2.0" src="https://img.shields.io/badge/Version-0.2.0-00d5ff?style=for-the-badge">
+  <img alt="Version 0.3.0" src="https://img.shields.io/badge/Version-0.3.0-00d5ff?style=for-the-badge">
   <img alt="Windows" src="https://img.shields.io/badge/Windows-Service%20%2B%20Console-0078D4?style=for-the-badge&logo=windows&logoColor=white">
   <img alt="Freelancer" src="https://img.shields.io/badge/Freelancer-Multiplayer-00A3FF?style=for-the-badge">
   <img alt="Web administration" src="https://img.shields.io/badge/Web-Administration-7B61FF?style=for-the-badge">
@@ -59,6 +59,7 @@ in a console window.
 - Purchase restrictions by rank or reputation, races against the clock, and AI ships administrators spawn.
 - Backups, a timeline of earlier account states, moving and copying characters between accounts.
 - Anti-cheat, connection quality per player, game roles, German and English.
+- Plugins: DLLs with a plain C interface that hook into client requests and add chat commands, managed on the Plugins page.
 
 ## Included Areas
 

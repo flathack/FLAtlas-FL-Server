@@ -17,7 +17,14 @@ und `src\include\remoteclient.h` dazu, für Fracht `src\include\common_server.h`
 Abschüsse `src\Server\server_gameobject.cpp`.
 
 Welche Befehle ein Freelancer-Server braucht, orientiert sich an FLHook von The Starport
-(https://github.com/TheStarport/FLHook). Es wurde kein Code daraus übernommen. Die Originaltexte unter
+(https://github.com/TheStarport/FLHook). Es wurde kein Code daraus übernommen.
+
+Vier Fehlerbehebungen in `src\Server` gehen auf FLSharp von BC46 zurück
+(https://github.com/BC46/FLSharp, MIT-Lizenz): kein Rauswurf mehr nach dem Rückkauf des eigenen
+Schiffs, kein Absturz bei unbekanntem Schiff in einer Charakterdatei, Munition pro Lauf bei
+Werfern mit mehreren Läufen und kein Absturz bei einer fehlenden DLL aus `freelancer.ini`. FLSharp
+patcht die fertige `server.dll`; hier sind die Stellen im Quellcode neu geschrieben, mit dem
+Kommentar `FLAtlas Server` markiert. Die Originaltexte unter
 `src\Resources` bleiben lokal und gehören nicht ins Git-Repo.
 
 ## Gestaltung

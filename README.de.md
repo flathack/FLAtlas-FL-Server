@@ -11,7 +11,7 @@
 </p>
 
 <p align="center">
-  <img alt="Version 0.2.0" src="https://img.shields.io/badge/Version-0.2.0-00d5ff?style=for-the-badge">
+  <img alt="Version 0.3.0" src="https://img.shields.io/badge/Version-0.3.0-00d5ff?style=for-the-badge">
   <img alt="Windows" src="https://img.shields.io/badge/Windows-Dienst%20%2B%20Konsole-0078D4?style=for-the-badge&logo=windows&logoColor=white">
   <img alt="Freelancer" src="https://img.shields.io/badge/Freelancer-Multiplayer-00A3FF?style=for-the-badge">
   <img alt="Web-Verwaltung" src="https://img.shields.io/badge/Web-Verwaltung-7B61FF?style=for-the-badge">
@@ -62,6 +62,7 @@ startet und betreut mehrere Spielserver auf einem PC, als Windows-Dienst oder in
 - Kaufbeschränkungen nach Rang oder Ruf, Rennen gegen die Uhr und KI-Schiffe, die Administratoren spawnen.
 - Backups, eine Zeitleiste früherer Kontostände, Charaktere zwischen Konten verschieben und kopieren.
 - Anti-Cheat, Verbindungsqualität pro Spieler, Spielrollen, Deutsch und Englisch.
+- Plugins: DLLs mit einer schlichten C-Schnittstelle, die sich in die Anfragen der Spieler einhängen und Chatbefehle hinzufügen, verwaltet auf der Seite Plugins.
 
 ## Bereiche der Verwaltung
 
